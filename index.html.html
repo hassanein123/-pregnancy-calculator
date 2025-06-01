@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة الحمل</title>
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 900px;
+      width: 100%;
+    }
+    .calculator {
+      flex: 1;
+    }
+    .description {
+      flex: 1;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #00897b;
+      color: white;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #00695c;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #00796b;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="calculator">
+      <h1>حاسبة الحمل</h1>
+      <label for="day">اليوم:</label>
+      <select id="day"></select>
+
+      <label for="month">الشهر:</label>
+      <select id="month"></select>
+
+      <label for="year">السنة:</label>
+      <select id="year"></select>
+
+      <button onclick="calculatePregnancy()">احسبي</button>
+
+      <div class="result" id="result"></div>
+    </div>
+    <div class="description">
+      <h2>ما هي حاسبة الحمل؟</h2>
+      <p>
+        تساعدكِ حاسبة الحمل على حساب الموعد التقريبي للولادة بناءً على تاريخ أول يوم من آخر دورة شهرية لكِ. 
+        هذه الطريقة تعتمد على نظام نيغيل والذي يفترض أن مدة الحمل الطبيعية هي 280 يومًا (40 أسبوعًا).
+      </p>
+      <p>
+        فقط أدخلي تاريخ بداية آخر دورة واضغطي على زر "احسبي"، وستظهر لكِ النتيجة فورًا.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const daySelect = document.getElementById("day");
+    const monthSelect = document.getElementById("month");
+    const yearSelect = document.getElementById("year");
+
+    // Populate day, month, year dropdowns
+    for (let d = 1; d <= 31; d++) {
+      daySelect.innerHTML += `<option value="${d}">${d}</option>`;
+    }
+    for (let m = 1; m <= 12; m++) {
+      monthSelect.innerHTML += `<option value="${m - 1}">${m}</option>`;
+    }
+    const thisYear = new Date().getFullYear();
+    for (let y = thisYear; y >= 1970; y--) {
+      yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+    }
+
+    function calculatePregnancy() {
+      const day = parseInt(daySelect.value);
+      const month = parseInt(monthSelect.value);
+      const year = parseInt(yearSelect.value);
+
+      const lmp = new Date(year, month, day);
+      const edd = new Date(lmp);
+      edd.setDate(edd.getDate() + 280); // Add 280 days (40 weeks)
+
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const resultText = `موعد الولادة المتوقع: ${edd.toLocaleDateString('ar-EG', options)}`;
+
+      document.getElementById("result").innerText = resultText;
+    }
+  </script>
+</body>
+</html>
