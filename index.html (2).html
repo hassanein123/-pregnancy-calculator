@@ -1,227 +1,0 @@
-
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة الحمل والولادة</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fff0f5;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #ffe4ec;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-      color: #c2185b;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 16px;
-    }
-    nav {
-      background-color: #f8bbd0;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #880e4f;
-      font-weight: bold;
-    }
-    section {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    select, button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #f06292;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-    button:hover {
-      background-color: #ec407a;
-    }
-    #result {
-      margin-top: 20px;
-      background-color: #e8f5e9;
-      padding: 12px;
-      border-radius: 8px;
-      color: #2e7d32;
-      font-weight: bold;
-      text-align: center;
-    }
-    footer {
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-      margin: 30px 0 10px;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>حاسبة الحمل والولادة</h1>
-  <p>احسبي موعد ولادتكِ المتوقع بدقة وسهولة</p>
-</header>
-
-<nav>
-  <a href="#calculator">حاسبة الحمل</a>
-  <a href="#advice">نصائح للحامل</a>
-  <a href="#privacy">سياسة الخصوصية</a>
-  <a href="#contact">تواصل معنا</a>
-</nav>
-
-<section id="calculator">
-  <h2>حاسبة الحمل</h2>
-  <label for="day">اليوم</label>
-  <select id="day"><option value="">-- اختاري اليوم --</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
-<option value="12">12</option>
-<option value="13">13</option>
-<option value="14">14</option>
-<option value="15">15</option>
-<option value="16">16</option>
-<option value="17">17</option>
-<option value="18">18</option>
-<option value="19">19</option>
-<option value="20">20</option>
-<option value="21">21</option>
-<option value="22">22</option>
-<option value="23">23</option>
-<option value="24">24</option>
-<option value="25">25</option>
-<option value="26">26</option>
-<option value="27">27</option>
-<option value="28">28</option>
-<option value="29">29</option>
-<option value="30">30</option>
-<option value="31">31</option>
-  </select>
-
-  <label for="month">الشهر</label>
-  <select id="month"><option value="">-- اختاري الشهر --</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
-<option value="12">12</option>
-  </select>
-
-  <label for="year">السنة</label>
-  <select id="year"><option value="">-- اختاري السنة --</option>
-<option value="2025">2025</option>
-<option value="2024">2024</option>
-<option value="2023">2023</option>
-<option value="2022">2022</option>
-<option value="2021">2021</option>
-<option value="2020">2020</option>
-<option value="2019">2019</option>
-<option value="2018">2018</option>
-<option value="2017">2017</option>
-<option value="2016">2016</option>
-  </select>
-
-  <button onclick="calculateDate()">احسبي موعد الولادة</button>
-  <div id="result"></div>
-</section>
-
-<section id="advice">
-  <h2>نصائح للحامل</h2>
-  <ul>
-    <li>اشربي كميات كافية من الماء يومياً.</li>
-    <li>احرصي على التغذية الصحية المتوازنة.</li>
-    <li>مارسي تمارين خفيفة بعد استشارة الطبيب.</li>
-    <li>راجعي طبيبك بانتظام لمتابعة الحمل.</li>
-    <li>نامي جيداً وخففي التوتر قدر الإمكان.</li>
-  </ul>
-</section>
-
-<section id="privacy">
-  <h2>سياسة الخصوصية</h2>
-  <p>نحن نحترم خصوصيتك تماماً. لا يتم جمع أي معلومات شخصية من خلال هذه الحاسبة. جميع الحسابات تتم محلياً في متصفحك ولا يتم تخزين أو مشاركة أي بيانات.</p>
-</section>
-
-<section id="contact">
-  <h2>تواصل معنا</h2>
-  <p>📧 راسلنا عبر البريد الإلكتروني:</p>
-  <p><strong>hasabat.contact@gmail.com</strong></p>
-</section>
-
-<footer>
-  &copy; 2025 حاسبة الحمل بالعربي - جميع الحقوق محفوظة
-</footer>
-
-<script>
-  function calculateDate() {
-    const d = parseInt(document.getElementById("day").value);
-    const m = parseInt(document.getElementById("month").value);
-    const y = parseInt(document.getElementById("year").value);
-
-    if (!d || !m || !y) {
-      document.getElementById("result").textContent = "⚠️ الرجاء اختيار التاريخ الكامل.";
-      return;
-    }
-
-    const startDate = new Date(y, m - 1, d);
-    if (isNaN(startDate.getTime())) {
-      document.getElementById("result").textContent = "⚠️ التاريخ غير صالح.";
-      return;
-    }
-
-    const dueDate = new Date(startDate.getTime() + 280 * 24 * 60 * 60 * 1000);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const result = dueDate.toLocaleDateString('ar-EG', options);
-
-    document.getElementById("result").textContent = `📅 موعد الولادة المتوقع هو: ${result}`;
-  }
-</script>
-
-</body>
-</html>
