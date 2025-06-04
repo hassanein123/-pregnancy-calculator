@@ -1,0 +1,63 @@
+
+<div dir="rtl" style="font-family:'Cairo',sans-serif;max-width:600px;margin:auto;background:#fff;padding:20px;border-radius:15px;box-shadow:0 0 10px rgba(0,0,0,0.1);">
+  <h2 style="color:#e76f51;text-align:center;">حاسبة الحمل والولادة</h2>
+  <p style="color:#444;text-align:center;">ادخلي تاريخ أول يوم من آخر دورة شهرية لحساب موعد الولادة المتوقع</p>
+
+  <label>اليوم:</label>
+  <select id="day" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;">
+    <option value="">اختر اليوم</option>
+    <script>for (let i = 1; i <= 31; i++) document.write(`<option value="${i}">${i}</option>`);</script>
+  </select>
+
+  <label>الشهر:</label>
+  <select id="month" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;">
+    <option value="">اختر الشهر</option>
+    <option value="1">يناير</option><option value="2">فبراير</option><option value="3">مارس</option>
+    <option value="4">أبريل</option><option value="5">مايو</option><option value="6">يونيو</option>
+    <option value="7">يوليو</option><option value="8">أغسطس</option><option value="9">سبتمبر</option>
+    <option value="10">أكتوبر</option><option value="11">نوفمبر</option><option value="12">ديسمبر</option>
+  </select>
+
+  <label>السنة:</label>
+  <select id="year" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;">
+    <option value="">اختر السنة</option>
+    <script>
+      const y = new Date().getFullYear();
+      for (let i = y; i >= y - 10; i--) document.write(`<option value="${i}">${i}</option>`);
+    </script>
+  </select>
+
+  <button onclick="calculate()" style="background:#2a9d8f;color:white;padding:12px;width:100%;border:none;border-radius:10px;font-size:16px;cursor:pointer;">احسبي</button>
+
+  <div id="result" style="margin-top:20px;font-weight:bold;text-align:center;color:#264653;"></div>
+
+  <div id="share" style="display:none;text-align:center;margin-top:15px;">
+    <p style="margin-bottom:8px;">شاركي النتيجة:</p>
+    <a id="wa" href="#" target="_blank" style="background:#25D366;color:white;padding:10px 15px;margin:5px;border-radius:8px;text-decoration:none;">واتساب</a>
+    <a id="fb" href="#" target="_blank" style="background:#3b5998;color:white;padding:10px 15px;margin:5px;border-radius:8px;text-decoration:none;">فيسبوك</a>
+    <a id="tw" href="#" target="_blank" style="background:#1DA1F2;color:white;padding:10px 15px;margin:5px;border-radius:8px;text-decoration:none;">تويتر</a>
+  </div>
+
+  <script>
+    function calculate() {
+      const d = parseInt(document.getElementById("day").value);
+      const m = parseInt(document.getElementById("month").value);
+      const y = parseInt(document.getElementById("year").value);
+      if (!d || !m || !y) {
+        document.getElementById("result").innerText = "يرجى إدخال التاريخ كاملًا.";
+        return;
+      }
+      const last = new Date(y, m - 1, d);
+      const due = new Date(last);
+      due.setDate(due.getDate() + 280);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const txt = "🍼 تاريخ الولادة المتوقع: " + due.toLocaleDateString('ar-EG', options);
+      document.getElementById("result").innerText = txt;
+      const share = encodeURIComponent(txt + " | احسبي موعدك الآن!");
+      document.getElementById("wa").href = "https://wa.me/?text=" + share;
+      document.getElementById("fb").href = "https://www.facebook.com/sharer/sharer.php?u=https://yourblog.blogspot.com&quote=" + share;
+      document.getElementById("tw").href = "https://twitter.com/intent/tweet?text=" + share;
+      document.getElementById("share").style.display = "block";
+    }
+  </script>
+</div>
